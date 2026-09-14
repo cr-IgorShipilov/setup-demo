@@ -1,5 +1,0 @@
-[08:49:21.718] === setup init started at 2026-09-14T08:49:21+03:00 ===
-[08:49:21.718] Wrote hosts.ini
-[08:49:21.718] Wrote servers.yml
-[08:49:21.718] Init complete. Edit hosts.ini and run 'setup --configure' or edit servers.yml directly.
-[08:49:21.718] === setup init finished: success (elapsed 0s) ===

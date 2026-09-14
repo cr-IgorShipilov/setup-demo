@@ -1,9 +1,0 @@
-[08:49:51.429] === setup status started at 2026-09-14T08:49:51+03:00 ===
-[08:49:51.429] Cluster health across 3 node(s):
-
-[08:49:51.429] status node=1 uptime=76d 04h version=4.3.17 health=HEALTHY note=""
-[08:49:51.429] status node=1 uptime=76d 04h version=4.3.17 health=HEALTHY note=""
-[08:49:51.429] status node=1 uptime=76d 04h version=4.3.17 health=DEGRADED note="indigo service restarted 3 times in the last hour"
-[08:49:51.429] 
-Cluster status: DEGRADED (2/3 nodes healthy).
-[08:49:51.429] === setup status finished: success (elapsed 0s) ===

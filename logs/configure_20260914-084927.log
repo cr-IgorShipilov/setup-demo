@@ -1,6 +1,0 @@
-[08:49:27.049] === setup configure started at 2026-09-14T08:49:27+03:00 ===
-[08:49:30.873] Collected server 1: {FQDN:1 IP:1 Netmask:1 Gateway:1 DNS1:1 DNS2:1}
-[08:49:32.688] Collected server 2: {FQDN:1 IP:192.168.10.12 Netmask:255.255.255.0 Gateway:1 DNS1:1 DNS2:1}
-[08:49:34.113] Collected server 3: {FQDN:1 IP:1 Netmask:1 Gateway:1 DNS1:1 DNS2:1}
-[08:49:34.114] Wrote servers.yml with 3 servers.
-[08:49:34.114] === setup configure finished: success (elapsed 7.065s) ===
