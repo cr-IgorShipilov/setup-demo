@@ -29,6 +29,7 @@ func main() {
 		doConfigure bool
 		doCheck     bool
 		doDeploy    bool
+		doStatus    bool
 	)
 
 	flag.BoolVar(&doInit, "init", false, "Generate demo hosts.ini and empty servers.yml")
@@ -39,18 +40,20 @@ func main() {
 	flag.BoolVar(&doCheck, "c", false, "Shorthand for --check")
 	flag.BoolVar(&doDeploy, "deploy", false, "Deploy to the configured environment with live status")
 	flag.BoolVar(&doDeploy, "d", false, "Shorthand for --deploy")
+	flag.BoolVar(&doStatus, "status", false, "Show a summary of current cluster health")
+	flag.BoolVar(&doStatus, "s", false, "Shorthand for --status")
 
 	flag.Usage = printUsage
 	flag.Parse()
 
-	selected := countTrue(doInit, doConfigure, doCheck, doDeploy)
+	selected := countTrue(doInit, doConfigure, doCheck, doDeploy, doStatus)
 	if selected != 1 {
 		fmt.Fprintln(os.Stderr, "error: exactly one action must be specified")
 		printUsage()
 		os.Exit(1)
 	}
 
-	action, run := selectAction(doInit, doConfigure, doCheck, doDeploy)
+	action, run := selectAction(doInit, doConfigure, doCheck, doDeploy, doStatus)
 
 	log, err := logging.New(logDir, action)
 	if err != nil {
@@ -83,7 +86,7 @@ func countTrue(vals ...bool) int {
 	return n
 }
 
-func selectAction(doInit, doConfigure, doCheck, doDeploy bool) (string, func(*logging.Logger) error) {
+func selectAction(doInit, doConfigure, doCheck, doDeploy, doStatus bool) (string, func(*logging.Logger) error) {
 	switch {
 	case doInit:
 		return "init", func(log *logging.Logger) error {
@@ -96,6 +99,10 @@ func selectAction(doInit, doConfigure, doCheck, doDeploy bool) (string, func(*lo
 	case doCheck:
 		return "check", func(log *logging.Logger) error {
 			return actions.Check(serversPath, log)
+		}
+	case doStatus:
+		return "status", func(log *logging.Logger) error {
+			return actions.Status(serversPath, log)
 		}
 	default: // doDeploy
 		return "deploy", func(log *logging.Logger) error {
@@ -112,6 +119,7 @@ Usage:
   setup --configure    (-cfg)  Interactively configure 3 servers into servers.yml
   setup --check        (-c)    Verify hardware/software prerequisites
   setup --deploy       (-d)    Deploy to the environment with live status
+  setup --status       (-s)    Show a summary of current cluster health
 
 Exactly one action must be specified per invocation.`)
 }

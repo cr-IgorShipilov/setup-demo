@@ -1,0 +1,24 @@
+[08:49:46.131] === setup deploy started at 2026-09-14T08:49:46+03:00 ===
+[08:49:46.132] Starting deployment to 3 server(s)...
+
+[08:49:46.282] event host=1 task="Gather facts" status=ok
+[08:49:46.433] event host=1 task="Install prerequisites" status=ok
+[08:49:46.584] event host=1 task="Configure Indigo service" status=changed
+[08:49:46.735] event host=1 task="Deploy application bundle" status=ok
+[08:49:46.886] event host=1 task="Start and enable service" status=ok
+[08:49:47.037] event host=1 task="Verify health endpoint" status=failed
+[08:49:47.188] event host=1 task="Gather facts" status=ok
+[08:49:47.339] event host=1 task="Install prerequisites" status=ok
+[08:49:47.490] event host=1 task="Configure Indigo service" status=changed
+[08:49:47.641] event host=1 task="Deploy application bundle" status=ok
+[08:49:47.792] event host=1 task="Start and enable service" status=ok
+[08:49:47.942] event host=1 task="Verify health endpoint" status=failed
+[08:49:48.093] event host=1 task="Gather facts" status=ok
+[08:49:48.244] event host=1 task="Install prerequisites" status=ok
+[08:49:48.394] event host=1 task="Configure Indigo service" status=changed
+[08:49:48.545] event host=1 task="Deploy application bundle" status=ok
+[08:49:48.695] event host=1 task="Start and enable service" status=ok
+[08:49:48.846] event host=1 task="Verify health endpoint" status=failed
+[08:49:48.846] 
+Deployment finished with 3 failed task(s). See log for details.
+[08:49:48.846] === setup deploy finished: failed: 3 task(s) failed during deployment (elapsed 2.715s) ===

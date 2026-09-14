@@ -1,0 +1,21 @@
+[08:49:43.474] === setup check started at 2026-09-14T08:49:43+03:00 ===
+[08:49:43.474] Checking 3 server(s)...
+
+[08:49:43.474] check host=1 requirement="CPU cores" actual="8" status=PASS
+[08:49:43.474] check host=1 requirement="RAM" actual="54GB" status=PASS
+[08:49:43.474] check host=1 requirement="Disk /" actual="349GB free" status=PASS
+[08:49:43.474] check host=1 requirement="Ansible facts" actual="reachable" status=PASS
+[08:49:43.474] check host=1 requirement="Python 3" actual="3.11.4" status=PASS
+[08:49:43.474] check host=1 requirement="CPU cores" actual="8" status=PASS
+[08:49:43.474] check host=1 requirement="RAM" actual="54GB" status=PASS
+[08:49:43.474] check host=1 requirement="Disk /" actual="349GB free" status=PASS
+[08:49:43.474] check host=1 requirement="Ansible facts" actual="reachable" status=PASS
+[08:49:43.474] check host=1 requirement="Python 3" actual="3.11.4" status=PASS
+[08:49:43.474] check host=1 requirement="CPU cores" actual="8" status=PASS
+[08:49:43.474] check host=1 requirement="RAM" actual="54GB" status=PASS
+[08:49:43.474] check host=1 requirement="Disk /" actual="349GB free" status=PASS
+[08:49:43.474] check host=1 requirement="Ansible facts" actual="reachable" status=PASS
+[08:49:43.474] check host=1 requirement="Python 3" actual="3.11.4" status=PASS
+[08:49:43.475] 
+All checks passed.
+[08:49:43.475] === setup check finished: success (elapsed 0s) ===

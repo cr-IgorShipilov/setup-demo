@@ -27,6 +27,7 @@ setup --init         (-i)    Generate demo hosts.ini and empty servers.yml
 setup --configure    (-cfg)  Interactively configure 5 servers into servers.yml
 setup --check        (-c)    Verify hardware/software prerequisites
 setup --deploy       (-d)    Deploy to the environment with live status
+setup --status       (-s)    Show a summary of current cluster health
 ```
 
 Passing zero or more than one action flag prints usage and exits non-zero.
@@ -56,6 +57,15 @@ Simulates running an Ansible deployment against the configured servers,
 printing live per-host/per-task status as it "runs," then a summary and a
 non-zero exit code if anything failed.
 
+### `--status`
+
+Prints a per-node summary of current cluster health — uptime, running
+version, and a `HEALTHY`/`DEGRADED` verdict per node — followed by a
+cluster-level roll-up. Like `--check`, it reads `servers.yml` and falls
+back to built-in demo data when that file is missing or empty, and it
+always exits 0: a degraded node is something to report, not a reason to
+fail the invocation.
+
 ### Logs
 
 Every invocation writes a timestamped log file to `logs/<action>_<timestamp>.log`,
@@ -68,6 +78,7 @@ capturing what ran and its result — including detail not shown on screen
 |---|---|---|
 | `--check` facts | Deterministically derived from a hash of each server's FQDN (`internal/actions/check.go: fakeFactsFor`) | Real Ansible fact-gathering / ad-hoc modules against each host |
 | `--deploy` events | Generated in-process on a Go channel (`internal/actions/deploy.go: emitFakeEvents`), with a scripted failure on the last host so both pass/fail rendering paths are visible | A custom Ansible callback plugin (Python) emitting JSON events over a named pipe (FIFO), consumed by the CLI in real time — avoids fragile stdout parsing while keeping Ansible itself untouched |
+| `--status` health | Uptime, version and health derived from a hash of each node's FQDN (`internal/actions/status.go: fakeHealthFor`), with the last node scripted as `DEGRADED` so both rendering paths are visible | Ansible fact gathering for uptime/version, plus the service's own health endpoint |
 | `ansible-playbook` invocation | Not invoked at all | `os/exec` launches `ansible-playbook` as a subprocess with `ANSIBLE_CALLBACK_PLUGINS` pointed at the custom plugin |
 
 ## Known limitations (v1 scope, by design)
@@ -92,7 +103,8 @@ setup-demo/
 │   │   ├── init.go                # --init
 │   │   ├── configure.go           # --configure
 │   │   ├── check.go                # --check (fake facts)
-│   │   └── deploy.go              # --deploy (fake live events)
+│   │   ├── deploy.go              # --deploy (fake live events)
+│   │   └── status.go              # --status (fake cluster health)
 │   ├── config/
 │   │   └── servers.go             # Server struct + hand-rolled servers.yml read/write
 │   └── logging/
